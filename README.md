@@ -23,6 +23,11 @@
 
 - Sử dụng **Flask** là framework chính để dựng server cung cấp **API** cho client. Nơi đây lưu trữ các mô hình đã được huấn luyện để dự đoán cảm xúc của một đoạn review.
 
+## Link Deploy
+
+- Frontend: [sentiment-app](https://sentiment-analyzer-app.vercel.app/)
+- Backend: [sentiment-analyzer-api](https://sentiment-analysis-api-aqfj.onrender.com)
+
 ## Conclusion
 
 - Sau khi phân tích, đánh giá và chạy thử kết quả từ mô hình thì nhóm nhận thấy kết quả tương đối chính xác với nhưng gì dữ liệu được huấn luyện, vì bộ dự liệu hầu hết là các review tích cực nên kết quả dự đoán thiên hướng về positive. Tuy nhiên để cải thiện điều này chỉ cần cho mô hình học bộ dữ liệu đa dạng hơn.
