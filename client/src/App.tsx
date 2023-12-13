@@ -22,7 +22,7 @@ function App() {
   };
   const runModel = async () => {
     if (text.trim() === "") {
-      alert("Vui lòng điền vào ô dưới");
+      alert("Please enter a text...");
       return;
     }
     if (type === "") {
@@ -40,7 +40,6 @@ function App() {
     const data = res.data;
     setSentiment(data?.review);
     setProgress(false);
-    console.log("data", res.data);
   };
   return (
     <div className="relative h-[100vh] w-[100vw] bg-slate-900 flex items-center justify-center">
@@ -80,7 +79,7 @@ function App() {
               <div className="flex flex-col items-center justify-center w-full">
                 <div className="py-2">
                   {progress ? (
-                    <div className="w-10 h-10 border-2 border-transparent rounded-full border-slate-100 border-b-transparent border-t-transparent animate-spin"></div>
+                    <div className="w-10 h-10 border-2 rounded-full border-slate-100 border-b-transparent border-t-transparent animate-spin"></div>
                   ) : sentiment === "" ? (
                     <div className="w-10 h-10"></div>
                   ) : sentiment === "positive" ? (
