@@ -8,9 +8,9 @@
 ## Directory structure
 
 - Gồm 3 folder phần chính: client, server, colab
-- client: Nơi chứa code Frontend
-- server: Nơi chưa code Backend
-- colab: Nơi chứa code thực hiện crawl, xử lí dữ liệu và xuất ra model.
+- client: Nơi chứa code giao diện người dùng (client-side)
+- server: Nơi chưa code phần server-side
+- colab: Nơi chứa code thực hiện crawl, xử lý dữ liệu và xuất ra model.
 
 ## User manual
 
@@ -20,7 +20,7 @@
 
 - Link download: [fasttext.model.wv.vectors_ngrams.npy](https://sentiment-analyzer.s3.ap-southeast-1.amazonaws.com/Models/fasttext.model.wv.vectors_ngrams.npy)
 
-- Sau khi download và bỏ vào thư mục models ở phần server là sử đụng được
+- Sau khi download và bỏ vào thư mục models ở phần server là sử đụng được.
 
 ## Data size
 
@@ -45,7 +45,7 @@
 - Frontend: [sentiment-app](https://sentiment-analyzer-app.vercel.app/)
 - Backend: [sentiment-analyzer-api](https://sentiment-analysis-api-aqfj.onrender.com)
 
-- **Note: Vì kích thước model fastest khá lớn, do vậy nhóm không push lên github được nên Link deploy chỉ sử dụng được mô hình Naive Bayes và Maxent. Để sử dụng toàn bộ tín năng hãy tải folder client và server về chạy ở local**
+- **Note: Vì kích thước model fastest khá lớn, do vậy nhóm không push lên github được nên Link deploy chỉ sử dụng được mô hình Naive Bayes và Maxent. Để sử dụng toàn bộ tín năng hãy tải folder client và server về chạy ở local.**
 
 ## Conclusion
 
