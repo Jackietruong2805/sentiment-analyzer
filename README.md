@@ -2,18 +2,33 @@
 
 ## Introduction
 
-- Đây là dự án nhóm dùng bộ dữ liệu được **craw** trực tiếp từ sàn thương mại điện **Tiki** ở danh mục [Nhà sách tiki](https://tiki.vn/nha-sach-tiki/c8322).
+- Đây là dự án nhóm dùng bộ dữ liệu được **crawl** trực tiếp từ sàn thương mại điện **Tiki** ở danh mục [Nhà sách tiki](https://tiki.vn/nha-sach-tiki/c8322).
 - Dự án được áp dụng nhiều loại mô hình học máy phổ biển để dự đoán cảm xúc của các review như **Naive Bayes**, **Maxent**, **ANN**.
+
+## Directory structure
+
+- Gồm 3 folder phần chính: client, server, colab
+- client: Nơi chứa code Frontend
+- server: Nơi chưa code Backend
+- colab: Nơi chứa code thực hiện crawl, xử lí dữ liệu và xuất ra model.
+
+## User manual
+
+- Vì kích thước của file **fasttext.model.wv.vectors_ngrams.npy** khá lớn nên nhóm lưu trữ mô hình này ở **S3** của **AWS**
+
+<img src="./server/asset/S3.png" width="550" style='border-radius: 10px; margin-bottom: 20px;'/>
+
+- Link download: [fasttext.model.wv.vectors_ngrams.npy](https://sentiment-analyzer.s3.ap-southeast-1.amazonaws.com/Models/fasttext.model.wv.vectors_ngrams.npy)
 
 ## Data size
 
 ##### 51 pages, 4 review page of each product
 
-- Ở trang danh mục Nhà sách tiki có **51 trang** và mỗi sản phẩm trong **1 trang** lại có nhiều review và nhiều trang review trong mỗi sản phẩm. Vì kích thước khá lớn, nên nhóm lấy **51 trang** ở danh mục Nhà sách Tiki và mỗi sản phẩm chỉ lấy **4 trang** review.
+- Ở trang danh mục Nhà sách tiki có **51 trang** và mỗi sản phẩm trong **1 trang** lại có nhiều review. Vì kích thước khá lớn, nên nhóm lấy **51 trang** ở danh mục Nhà sách Tiki và mỗi sản phẩm chỉ lấy **4 trang** review.
 
 ## Technologies
 
-- Dự án được viết theo mô hình **client** và **server**. Client đóng vai trò là nơi nhận **API** từ phiá server trả về.
+- Dự án được viết theo mô hình **client-server**. Client đóng vai trò là nơi nhận **API** từ phiá server trả về.
 
 #### Frontend
 
@@ -27,6 +42,8 @@
 
 - Frontend: [sentiment-app](https://sentiment-analyzer-app.vercel.app/)
 - Backend: [sentiment-analyzer-api](https://sentiment-analysis-api-aqfj.onrender.com)
+
+- **Note: Vì kích thước model fastest khá lớn, do vậy nhóm không push lên github được nên Link deploy chỉ sử dụng được mô hình Naive Bayes và Maxent. Để sử dụng toàn bộ tín năng hãy tải folder client và server về chạy ở local**
 
 ## Conclusion
 

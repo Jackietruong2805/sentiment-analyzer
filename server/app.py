@@ -1,30 +1,13 @@
 import warnings
-warnings.filterwarnings("ignore")
 from flask import Flask, jsonify, request
 from flask_cors import CORS
-from gensim.models import FastText
-from gensim.utils import simple_preprocess
-import pandas as pd
+from tensorflow.keras.models import load_model
 import joblib
 from utils import *
+warnings.filterwarnings("ignore")
+
 app = Flask(__name__)
 CORS(app)
-
-def vectorize_review(review):
-    data = pd.read_csv("./review.csv", encoding='utf8')
-    #simple preprocess
-    sentences = [simple_preprocess(data) for data in data]
-    #train model
-    model = FastText(sentences, vector_size=100, window=5, min_count=1, workers=4, sg=1)
-    words = simple_preprocess(review)
-    #Calculate the average vector of the words in the review
-    vectors = [model.wv[word] for word in words if word in model.wv]
-    if vectors:
-        #Returns the average of the word vectors
-        return sum(vectors) / len(vectors)
-    else:
-        #In case no vector is found for any word in the review
-        return [0] * model.vector_size
 
 @app.route('/', methods=['POST'])
 
@@ -48,17 +31,24 @@ def analyze():
             tfidf_vectors = vectorizer.transform(input_text)
             # Make predictions using the loaded model
             predictions = model.predict(tfidf_vectors)[0]
-        if model_type == 'maxent':
+        else:
             # Load the pre-trained model
             model = joblib.load('./models/logistic_regression_model.pkl')
             # Vectorize your input text
             input_text = [review]
             tfidf_vectors = vectorizer.transform(input_text)
-            # Make predictions using the loaded model
+            # Make predictions using the loaded model   
             predictions = model.predict(tfidf_vectors)[0]
-    else:
-        predictions = ''
-    
+    if model_type == 'ann':
+        model_dl = load_model("./models/ANN.h5")
+        vectorized_text = vectorize_text(review)
+        vectorized_text = np.reshape(vectorized_text, (1, 1, 100))
+        sentiment_predict = model_dl(vectorized_text)
+        sentiment_predict = sentiment_predict.numpy()[0, 0]
+        if sentiment_predict > 0.5:
+            predictions = 'positive'
+        else:
+            predictions = 'negative'
     return jsonify({
         "review": predictions,
     })

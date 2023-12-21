@@ -4,7 +4,10 @@ from nltk.tokenize import word_tokenize
 from pyvi import ViTokenizer, ViPosTagger
 import demoji
 import re
-import re
+from gensim.models import FastText
+import numpy as np
+from gensim.utils import simple_preprocess
+
 
 
 def remove_words_not_in_list(text):
@@ -48,6 +51,27 @@ def process_data(review):
     # Dealing with emojis and emoticon
     review = remove_emojis(review)
     return review
+
+def vectorize_text(text):
+    # load fastText model
+    model = FastText.load("./models/fasttext.model")
+    # Chia dòng văn bản thành các từ
+    text_tokenized = simple_preprocess(text, min_len=1, max_len=100)
+    # Tạo một mảng để lưu trữ vectơ của từng từ trong câu
+    word_vectors = []
+    # Vectorize từng từ trong câu
+    for word in text_tokenized:
+        if word in model.wv:
+            word_vector = model.wv[word]
+            word_vectors.append(word_vector)
+
+    if len(word_vectors) > 0:
+        sentence_vector = np.mean(word_vectors, axis=0)
+        sentence_vector = np.reshape(sentence_vector, (1, -1))
+        return sentence_vector
+    else:
+        print("Không tìm thấy từ nào trong từ điển của mô hình FastText.")
+        return None
 
 
 

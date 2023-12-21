@@ -13,10 +13,16 @@ function App() {
   const handleType = (type: string, ref: string) => {
     if (ref === "nb") {
       (maxentRef.current as any).style.border = "none";
+      (annRef.current as any).style.border = "none";
       (naiveBayesRef.current as any).style.border = "2px solid white";
     } else if (ref === "mx") {
       (naiveBayesRef.current as any).style.border = "none";
+      (annRef.current as any).style.border = "none";
       (maxentRef.current as any).style.border = "2px solid white";
+    } else if (ref === "ann") {
+      (maxentRef.current as any).style.border = "none";
+      (naiveBayesRef.current as any).style.border = "none";
+      (annRef.current as any).style.border = "2px solid white";
     }
     setType(type);
   };
@@ -30,13 +36,10 @@ function App() {
       return;
     }
     setProgress(true);
-    const res = await axios.post(
-      "https://sentiment-analysis-api-aqfj.onrender.com",
-      {
-        review: text,
-        type,
-      }
-    );
+    const res = await axios.post("http://127.0.0.1:5000", {
+      review: text,
+      type,
+    });
     const data = res.data;
     setSentiment(data?.review);
     setProgress(false);
@@ -60,7 +63,7 @@ function App() {
                   onClick={() => handleType("naivebayes", "nb")}
                   className="px-3 py-1 bg-orange-500 rounded-md whitespace-nowrap"
                 >
-                  Naive Bayes
+                  Naïve Bayes
                 </button>
                 <button
                   ref={maxentRef}
@@ -71,6 +74,7 @@ function App() {
                 </button>
                 <button
                   ref={annRef}
+                  onClick={() => handleType("ann", "ann")}
                   className="px-3 py-1 bg-yellow-500 rounded-md whitespace-nowrap"
                 >
                   ANN
