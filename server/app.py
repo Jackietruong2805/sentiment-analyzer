@@ -50,7 +50,7 @@ def analyze():
         else:
             predictions = 'negative'
     return jsonify({
-        "review": predictions,
+        "review": predictions
     })
 
 if __name__ == '__main__':

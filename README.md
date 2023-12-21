@@ -16,9 +16,11 @@
 
 - Vì kích thước của file **fasttext.model.wv.vectors_ngrams.npy** khá lớn nên nhóm lưu trữ mô hình này ở **S3** của **AWS**
 
-<img src="./server/asset/S3.png" width="550" style='border-radius: 10px; margin-bottom: 20px;'/>
+<img src="./server/asset/S3.png" width="700" height="400" style='border-radius: 10px; margin-bottom: 20px;'/>
 
 - Link download: [fasttext.model.wv.vectors_ngrams.npy](https://sentiment-analyzer.s3.ap-southeast-1.amazonaws.com/Models/fasttext.model.wv.vectors_ngrams.npy)
+
+- Sau khi download và bỏ vào thư mục models ở phần server là sử đụng được
 
 ## Data size
 
