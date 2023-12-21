@@ -7,7 +7,7 @@
 
 ## Directory structure
 
-- Gồm 3 folder phần chính: client, server, colab
+- Gồm 3 folder chính: client, server, colab
 - client: Nơi chứa code giao diện người dùng (client-side)
 - server: Nơi chưa code phần server-side
 - colab: Nơi chứa code thực hiện crawl, xử lý dữ liệu và xuất ra model.
