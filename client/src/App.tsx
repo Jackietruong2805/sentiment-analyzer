@@ -36,10 +36,13 @@ function App() {
       return;
     }
     setProgress(true);
-    const res = await axios.post("http://127.0.0.1:5000", {
-      review: text,
-      type,
-    });
+    const res = await axios.post(
+      "https://sentiment-analysis-api-aqfj.onrender.com",
+      {
+        review: text,
+        type,
+      }
+    );
     const data = res.data;
     setSentiment(data?.review);
     setProgress(false);
